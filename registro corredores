@@ -1,0 +1,56 @@
+#include <iostream>
+#include <string>
+#include <queue>
+
+using namespace std;
+
+class Corredor {
+    private:
+        string nombre;
+        string nacionalidad;
+        float tiempo;
+    public:
+        Corredor(string nmb, string nac, float t) {
+            nombre = nmb;
+            nacionalidad = nac;
+            tiempo = t;
+        }
+        string getNombre() {
+            return nombre;
+        }
+        string getNacionalidad() {
+            return nacionalidad;
+        }
+        float getTiempo() {
+            return tiempo;
+        }
+};
+
+int main() {
+    queue<Corredor> corredores;
+    string nombre, nacionalidad;
+    float tiempo;
+
+    
+    for (int i = 0; i < 3; i++) {
+        cout << "Corredor " << i + 1 << endl;
+        cout << "Nombre: ";
+        getline(cin, nombre);
+        cout << "Nacionalidad: ";
+        getline(cin, nacionalidad);
+        cout << "Tiempo: ";
+        cin >> tiempo;
+        cin.ignore();
+        corredores.push(Corredor(nombre, nacionalidad, tiempo));
+        system("cls");
+    }
+
+   
+    cout << endl << "Corredores y tiempos registrados (en orden FIFO): " << endl;
+    while (!corredores.empty()) {
+        cout << corredores.front().getNombre() << " (" << corredores.front().getNacionalidad() << "): " << corredores.front().getTiempo() << " segundos" << endl;
+        corredores.pop();
+    }
+
+    return 0;
+}
